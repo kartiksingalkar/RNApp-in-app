@@ -1,9 +1,13 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import SutradharForm from "sutradhar-app-library"
+import SutradharCounter from "sutradhar-second-library"
 
 const App = () => {
+  const [selectedApp, setSelectedApp] = useState('');
+
   const handleAppStart = (appName) => {
-    alert(`${appName} started`);
+    setSelectedApp(appName);
   };
 
   return (
@@ -25,6 +29,9 @@ const App = () => {
         onPress={() => handleAppStart('App3')}>
         <Text style={styles.buttonText}>App3</Text>
       </TouchableOpacity>
+
+      {selectedApp === 'App1' && <SutradharForm />}
+      {selectedApp === 'App2' && <SutradharCounter />}
     </View>
   );
 };

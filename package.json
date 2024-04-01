@@ -13,6 +13,7 @@
     "react": "18.2.0",
     "react-native": "0.73.6",
     "sutradhar-app-library": "^1.0.1",
+    "sutradhar-dynamic-icons-library": "^1.0.0",
     "sutradhar-second-library": "^1.0.0"
   },
   "devDependencies": {

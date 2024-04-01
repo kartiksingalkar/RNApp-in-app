@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import SutradharForm from "sutradhar-app-library"
 import SutradharCounter from "sutradhar-second-library"
+import IconApp from "sutradhar-dynamic-icons-library"
 
 const App = () => {
   const [selectedApp, setSelectedApp] = useState('');
@@ -32,6 +33,7 @@ const App = () => {
 
       {selectedApp === 'App1' && <SutradharForm />}
       {selectedApp === 'App2' && <SutradharCounter />}
+      {selectedApp === 'App3' && <IconApp />}
     </View>
   );
 };

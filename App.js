@@ -1,39 +1,59 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import SutradharForm from "sutradhar-app-library"
-import SutradharCounter from "sutradhar-second-library"
-import IconApp from "sutradhar-dynamic-icons-library"
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import SutradharForm from "sutradhar-app-library";
+import SutradharCounter from "sutradhar-second-library";
+import IconApp from "sutradhar-dynamic-icons-library";
+import { VoiceText } from "sutradhar-voice-text";
+
+const Stack = createStackNavigator();
 
 const App = () => {
-  const [selectedApp, setSelectedApp] = useState('');
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="SutradharForm" component={SutradharForm} />
+        <Stack.Screen name="SutradharCounter" component={SutradharCounter} />
+        <Stack.Screen name="IconApp" component={IconApp} />
+        <Stack.Screen name="VoiceText" component={VoiceText} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+};
 
+const HomeScreen = ({ navigation }) => {
   const handleAppStart = (appName) => {
-    setSelectedApp(appName);
+    navigation.navigate(appName);
   };
 
   return (
     <View style={styles.container}>
       <TouchableOpacity
         style={[styles.button, styles.button1]}
-        onPress={() => handleAppStart('App1')}>
+        onPress={() => handleAppStart('SutradharForm')}>
         <Text style={styles.buttonText}>App1</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
         style={[styles.button, styles.button2]}
-        onPress={() => handleAppStart('App2')}>
+        onPress={() => handleAppStart('SutradharCounter')}>
         <Text style={styles.buttonText}>App2</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
         style={[styles.button, styles.button3]}
-        onPress={() => handleAppStart('App3')}>
+        onPress={() => handleAppStart('IconApp')}>
         <Text style={styles.buttonText}>App3</Text>
       </TouchableOpacity>
 
-      {selectedApp === 'App1' && <SutradharForm />}
-      {selectedApp === 'App2' && <SutradharCounter />}
-      {selectedApp === 'App3' && <IconApp />}
+      <TouchableOpacity
+        style={[styles.button, styles.button4]}
+        onPress={() => handleAppStart('VoiceText')}>
+        <Text style={styles.buttonText}>App4</Text>
+      </TouchableOpacity>
+
     </View>
   );
 };
@@ -66,6 +86,9 @@ const styles = StyleSheet.create({
   },
   button3: {
     backgroundColor: '#61ff6f',
+  },
+  button4: {
+    backgroundColor: '#f1ff6f',
   },
 });
 

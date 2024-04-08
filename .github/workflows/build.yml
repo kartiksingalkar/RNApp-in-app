@@ -1,0 +1,26 @@
+
+name: React Native Build (Android)
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-android:
+    runs-on: self-hosted
+
+    steps:
+      - uses: actions/checkout@v3  # Fetches code from your repository
+
+      - name: Install dependencies (optional)
+        # Uncomment and adjust if needed
+        run: |
+          npm install  # Assuming dependencies are installed on the runner directly
+      - name: Build Android release
+        run: |
+          sudo sh -c 'cd /home/azureuser/SutradharMain/android && ./gradlew clean && ./gradlew assembleRelease'
+      - name: Upload artifacts (optional)
+        uses: actions/upload-artifact@v3
+        with:
+          name: android-release-apk
+          path: /home/azureuser/SutradharMain/android/app/build/outputs/apk/release/  # 
